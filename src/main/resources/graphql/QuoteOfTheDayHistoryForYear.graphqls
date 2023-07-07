@@ -1,0 +1,4 @@
+type QuoteOfTheDayHistoryForYear {
+  year: Int!
+  quotesOfTheDay: [QuoteOfTheDay]
+}

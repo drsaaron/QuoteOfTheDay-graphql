@@ -6,4 +6,6 @@ type Quote {
     text: String!
 
     sourceCode: QuoteSourceCode!
+
+    quoteOfTheDayHistory: [QuoteOfTheDayHistoryForYear!]
 }

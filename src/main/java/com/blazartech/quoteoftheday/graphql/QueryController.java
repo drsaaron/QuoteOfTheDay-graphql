@@ -6,10 +6,16 @@ package com.blazartech.quoteoftheday.graphql;
 
 import com.blazartech.products.qotdp.data.Quote;
 import com.blazartech.products.qotdp.data.QuoteOfTheDay;
+import com.blazartech.products.qotdp.data.QuoteOfTheDayHistory;
 import com.blazartech.products.qotdp.data.QuoteSourceCode;
 import com.blazartech.products.qotdp.data.access.QuoteOfTheDayDAL;
 import com.blazartech.products.qotdp.process.GetQuoteOfTheDayPAB;
+import com.blazartech.quoteoftheday.graphql.data.QuoteOfTheDayHistoryForYear;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
@@ -61,5 +67,21 @@ public class QueryController {
     public Quote quote(QuoteOfTheDay qotd) {
         log.info("getting quote for QOTD {}", qotd.getNumber());
         return dal.getQuote(qotd.getQuoteNumber());
+    }
+    
+    @SchemaMapping
+    public List<QuoteOfTheDayHistoryForYear> quoteOfTheDayHistory(Quote q) {
+        log.info("getting QOTD history for quote {}", q.getNumber());
+        QuoteOfTheDayHistory history = dal.getQuoteOfTheDayHistoryForQuote(q.getNumber());
+
+        return history.getHistoryByYear().keySet().stream()
+                .sorted((y1, y2) -> Integer.compare(y1, y2))
+                .map(y -> new QuoteOfTheDayHistoryForYear(y, history.getHistoryByYear().get(y)))
+                .collect(Collectors.toList());
+    }
+    
+    @SchemaMapping 
+    public Collection<QuoteOfTheDay> quotesOfTheDay(QuoteOfTheDayHistoryForYear hry) {
+        return hry.getQotdHistory();
     }
 }
