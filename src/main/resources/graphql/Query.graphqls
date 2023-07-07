@@ -1,0 +1,7 @@
+type Query {
+  # get a quote
+  getQuote(number: Int!): Quote!
+
+  # get quote of the day 
+  getQuoteOfTheDay(runDate: Date): QuoteOfTheDay!
+}

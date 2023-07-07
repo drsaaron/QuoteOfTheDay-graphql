@@ -1,0 +1,11 @@
+type Quote {
+    number: Int!
+
+    usable: Boolean!
+
+    text: String!
+
+    sourceCode: QuoteSourceCode!
+
+    quoteOfTheDayHistory: [QuoteOfTheDayHistoryForYear!]
+}

@@ -1,0 +1,8 @@
+type QuoteOfTheDay {
+    number: Int!
+
+    quote: Quote!
+
+    runDate: Date!
+}
+
