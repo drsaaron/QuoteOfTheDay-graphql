@@ -1,0 +1,9 @@
+type Quote {
+    number: Int!
+
+    usable: Boolean!
+
+    text: String!
+
+    
+}

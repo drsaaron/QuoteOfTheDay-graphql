@@ -1,0 +1,4 @@
+type Query {
+  # get a quote
+  getQuote(number: Int!): Quote!
+}
