@@ -5,5 +5,5 @@ type Quote {
 
     text: String!
 
-    
+    sourceCode: QuoteSourceCode!
 }

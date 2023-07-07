@@ -5,11 +5,13 @@
 package com.blazartech.quoteoftheday.graphql;
 
 import com.blazartech.products.qotdp.data.Quote;
+import com.blazartech.products.qotdp.data.QuoteSourceCode;
 import com.blazartech.products.qotdp.data.access.QuoteOfTheDayDAL;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
+import org.springframework.graphql.data.method.annotation.SchemaMapping;
 import org.springframework.stereotype.Controller;
 
 /**
@@ -29,5 +31,12 @@ public class QueryController {
         
         Quote q = dal.getQuote(number);
         return q;
+    }
+    
+    @SchemaMapping
+    public QuoteSourceCode sourceCode(Quote q) {
+        log.info("getting source code for quote {}", q.getNumber());
+        int sc = q.getSourceCode();
+        return dal.getQuoteSourceCode(sc);
     }
 }
