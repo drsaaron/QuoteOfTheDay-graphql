@@ -11,7 +11,6 @@ import com.blazartech.products.qotdp.data.QuoteSourceCode;
 import com.blazartech.products.qotdp.data.access.QuoteOfTheDayDAL;
 import com.blazartech.products.qotdp.process.GetQuoteOfTheDayPAB;
 import com.blazartech.quoteoftheday.graphql.data.QuoteOfTheDayHistoryForYear;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
