@@ -14,12 +14,14 @@ import com.blazartech.quoteoftheday.graphql.data.QuoteOfTheDayHistoryForYear;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.graphql.data.method.annotation.SchemaMapping;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Controller;
 
 /**
@@ -56,31 +58,37 @@ public class QueryController {
     }
     
     @SchemaMapping
-    public QuoteSourceCode sourceCode(Quote q) {
+    @Async
+    public CompletableFuture<QuoteSourceCode> sourceCode(Quote q) {
         log.info("getting source code for quote {}", q.getNumber());
         int sc = q.getSourceCode();
-        return dal.getQuoteSourceCode(sc);
+        return CompletableFuture.completedFuture(dal.getQuoteSourceCode(sc));
     }
     
     @SchemaMapping
-    public Quote quote(QuoteOfTheDay qotd) {
+    @Async
+    public CompletableFuture<Quote> quote(QuoteOfTheDay qotd) {
         log.info("getting quote for QOTD {}", qotd.getNumber());
-        return dal.getQuote(qotd.getQuoteNumber());
+        return CompletableFuture.completedFuture(dal.getQuote(qotd.getQuoteNumber()));
     }
     
     @SchemaMapping
-    public List<QuoteOfTheDayHistoryForYear> quoteOfTheDayHistory(Quote q) {
+    @Async
+    public CompletableFuture<List<QuoteOfTheDayHistoryForYear>> quoteOfTheDayHistory(Quote q) {
         log.info("getting QOTD history for quote {}", q.getNumber());
         QuoteOfTheDayHistory history = dal.getQuoteOfTheDayHistoryForQuote(q.getNumber());
 
-        return history.getHistoryByYear().keySet().stream()
+        List<QuoteOfTheDayHistoryForYear> historyForYear = history.getHistoryByYear().keySet().stream()
                 .sorted((y1, y2) -> Integer.compare(y1, y2))
                 .map(y -> new QuoteOfTheDayHistoryForYear(y, history.getHistoryByYear().get(y)))
                 .collect(Collectors.toList());
+        
+        return CompletableFuture.completedFuture(historyForYear);
     }
     
     @SchemaMapping 
-    public Collection<QuoteOfTheDay> quotesOfTheDay(QuoteOfTheDayHistoryForYear hry) {
-        return hry.getQotdHistory();
+    @Async
+    public CompletableFuture<Collection<QuoteOfTheDay>> quotesOfTheDay(QuoteOfTheDayHistoryForYear hry) {
+        return CompletableFuture.completedFuture(hry.getQotdHistory());
     }
 }
