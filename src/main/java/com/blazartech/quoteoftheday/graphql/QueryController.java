@@ -11,6 +11,7 @@ import com.blazartech.products.qotdp.data.QuoteSourceCode;
 import com.blazartech.products.qotdp.data.access.QuoteOfTheDayDAL;
 import com.blazartech.products.qotdp.process.GetQuoteOfTheDayPAB;
 import com.blazartech.quoteoftheday.graphql.data.QuoteOfTheDayHistoryForYear;
+import jakarta.transaction.Transactional;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -74,6 +75,7 @@ public class QueryController {
     
     @SchemaMapping
     @Async
+    @Transactional
     public CompletableFuture<List<QuoteOfTheDayHistoryForYear>> quoteOfTheDayHistory(Quote q) {
         log.info("getting QOTD history for quote {}", q.getNumber());
         QuoteOfTheDayHistory history = dal.getQuoteOfTheDayHistoryForQuote(q.getNumber());
