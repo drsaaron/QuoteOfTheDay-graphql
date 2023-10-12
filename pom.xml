@@ -3,18 +3,18 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.blazartech</groupId>
     <artifactId>QuoteOfTheDay-graphql</artifactId>
-    <version>1.4-RELEASE</version>
+    <version>1.5-RELEASE</version>
     <packaging>jar</packaging>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <exec.mainClass>com.blazartech.quoteoftheday.graphql.QuoteOfTheDayGraphql</exec.mainClass>
-        <maven.compiler.release>17</maven.compiler.release>
+        <maven.compiler.release>21</maven.compiler.release>
     </properties>
     
     <parent>  
         <groupId>org.springframework.boot</groupId>           
         <artifactId>spring-boot-starter-parent</artifactId>           
-        <version>3.1.2</version>     
+        <version>3.1.4</version>     
     </parent> 
     
     <dependencies>
@@ -30,12 +30,12 @@
         <dependency>
             <groupId>com.blazartech</groupId>
             <artifactId>QuoteOfTheDay-process</artifactId>
-            <version>1.41-RELEASE</version>
+            <version>1.44-RELEASE</version>
         </dependency>
         <dependency>
             <groupId>com.blazartech</groupId>
             <artifactId>QuoteOfTheDay-data-jpaImpl</artifactId>
-            <version>1.49-RELEASE</version>
+            <version>1.52-RELEASE</version>
         </dependency>
         <dependency>
             <groupId>com.mysql</groupId>
