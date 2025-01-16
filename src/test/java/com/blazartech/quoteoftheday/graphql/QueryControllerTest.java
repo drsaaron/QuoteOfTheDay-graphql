@@ -28,7 +28,7 @@ import org.springframework.test.context.jdbc.Sql;
 //@Transactional(transactionManager = "txManager")
 public class QueryControllerTest {
     
-    @MockBean
+    @MockitoBean
     private BlazarCryptoFile cryptoFile;
     
     @Autowired 
