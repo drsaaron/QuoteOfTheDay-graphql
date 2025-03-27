@@ -5,7 +5,6 @@
 package com.blazartech.quoteoftheday.graphql;
 
 import com.blazartech.products.crypto.BlazarCryptoFile;
-import lombok.extern.slf4j.Slf4j;
 import static org.junit.Assert.assertEquals;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -13,6 +12,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.graphql.GraphQlTest;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
@@ -24,9 +25,10 @@ import org.springframework.test.context.jdbc.Sql;
  * @author scott
  */
 @GraphQlTest(QueryController.class)
-@Slf4j
 //@Transactional(transactionManager = "txManager")
 public class QueryControllerTest {
+    
+    private static final Logger log = LoggerFactory.getLogger(QueryControllerTest.class);
     
     @MockitoBean
     private BlazarCryptoFile cryptoFile;

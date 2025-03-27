@@ -4,15 +4,30 @@
  */
 package com.blazartech.quoteoftheday.graphql;
 
-import lombok.Data;
-
 /**
  *
  * @author scott
  */
-@Data
 public class TestQuoteSourceCode {
     
     private int number;
     private String text;
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+    
+    
 }

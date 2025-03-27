@@ -18,7 +18,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
@@ -31,8 +32,9 @@ import org.springframework.stereotype.Controller;
  * @author scott
  */
 @Controller
-@Slf4j
 public class QueryController {
+    
+    private static final Logger log = LoggerFactory.getLogger(QueryController.class);
     
     @Autowired
     private QuoteOfTheDayDAL dal;
