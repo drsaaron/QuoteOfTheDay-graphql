@@ -19,5 +19,5 @@ ENV SERVER_PORT=3500
 HEALTHCHECK CMD curl --silent --fail http://localhost:$SERVER_PORT/monitoring/health || exit 1
 
 # run the script
-CMD ./runServices.sh
+CMD ["./runServices.sh"]
 
