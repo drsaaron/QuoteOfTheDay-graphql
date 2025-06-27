@@ -10,7 +10,6 @@ import com.blazartech.products.qotdp.data.QuoteOfTheDayHistory;
 import com.blazartech.products.qotdp.data.QuoteSourceCode;
 import com.blazartech.products.qotdp.data.access.QuoteOfTheDayDAL;
 import com.blazartech.products.qotdp.process.GetQuoteOfTheDayPAB;
-import com.blazartech.products.services.date.DateServices;
 import com.blazartech.quoteoftheday.graphql.data.QuoteOfTheDayHistoryForYear;
 import jakarta.transaction.Transactional;
 import java.time.LocalDate;
@@ -42,9 +41,6 @@ public class QueryController {
     @Autowired
     private GetQuoteOfTheDayPAB qotdPAB;
     
-    @Autowired
-    private DateServices dateServices;
-    
     @QueryMapping
     public Quote getQuote(@Argument int number) {
         log.info("getting quote {}", number);
@@ -60,7 +56,7 @@ public class QueryController {
             return qotdPAB.getQuoteOfTheDay();
         } else {
             log.info("getting quote of the day for {}", runDate);
-            return qotdPAB.getQuoteOfTheDay(dateServices.convertLocalDateToDate(runDate));
+            return qotdPAB.getQuoteOfTheDay(runDate);
         }
     }
     
