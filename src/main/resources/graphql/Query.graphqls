@@ -4,4 +4,7 @@ type Query {
 
   # get quote of the day 
   getQuoteOfTheDay(runDate: Date): QuoteOfTheDay!
+
+  # get list of quotes for a source code
+  getQuotesBySourceCode(sourceCode: Int!): [Quote]
 }

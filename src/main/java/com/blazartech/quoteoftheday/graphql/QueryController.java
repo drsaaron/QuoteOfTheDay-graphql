@@ -60,6 +60,16 @@ public class QueryController {
         }
     }
     
+    @QueryMapping
+    @Transactional
+    public Collection<Quote> getQuotesBySourceCode(@Argument int sourceCode) {
+        log.info("getting quotes for source code {}", sourceCode);
+        
+        Collection<Quote> quotes = dal.getQuotesForSourceCode(sourceCode);
+        return quotes;
+        
+    }
+    
     @SchemaMapping
     @Async
     public CompletableFuture<QuoteSourceCode> sourceCode(Quote q) {
