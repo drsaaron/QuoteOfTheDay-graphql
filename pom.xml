@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.blazartech</groupId>
     <artifactId>QuoteOfTheDay-graphql</artifactId>
-    <version>1.33-RELEASE</version>
+    <version>1.34-RELEASE</version>
     <packaging>jar</packaging>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -14,7 +14,7 @@
     <parent>  
         <groupId>com.blazartech</groupId>           
         <artifactId>blazarjavaparent</artifactId>           
-        <version>1.15-RELEASE</version>     
+        <version>1.16-RELEASE</version>     
     </parent> 
     
     <dependencies>
@@ -30,24 +30,24 @@
         <dependency>
             <groupId>com.blazartech</groupId>
             <artifactId>QuoteOfTheDay-process</artifactId>
-            <version>1.67-RELEASE</version>
+            <version>1.68-RELEASE</version>
         </dependency>
         <dependency>
             <groupId>com.blazartech</groupId>
             <artifactId>QuoteOfTheDay-data</artifactId>
-            <version>1.67-RELEASE</version>
+            <version>1.68-RELEASE</version>
         </dependency>
         
         <dependency>
             <groupId>com.blazartech</groupId>
             <artifactId>BlazarCryptoFile-mvn</artifactId>
-            <version>1.61-RELEASE</version>
+            <version>1.62-RELEASE</version>
         </dependency>
         
         <dependency>
             <groupId>com.blazartech</groupId>
             <artifactId>QuoteOfTheDay-data-jpaImpl</artifactId>
-            <version>1.78-RELEASE</version>
+            <version>1.79-RELEASE</version>
         </dependency>
         <dependency>
             <groupId>com.mysql</groupId>
