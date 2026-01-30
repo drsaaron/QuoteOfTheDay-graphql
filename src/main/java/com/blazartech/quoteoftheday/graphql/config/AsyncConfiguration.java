@@ -5,11 +5,11 @@
 package com.blazartech.quoteoftheday.graphql.config;
 
 import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.scheduling.annotation.AsyncConfigurer;
+import org.springframework.core.task.support.TaskExecutorAdapter;
 import org.springframework.scheduling.annotation.EnableAsync;
-import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 /**
  *
@@ -17,25 +17,10 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
  */
 @Configuration
 @EnableAsync
-public class AsyncConfiguration implements AsyncConfigurer {
+public class AsyncConfiguration {
     
-    private int minSize = 5;
-    
-    private int maxSize = 10;
-    
-    private int queueSize = 500;
-    
-    private String threadPrefix = "Async-";
-    
-    @Override
-    @Bean(destroyMethod = "shutdown") 
+    @Bean
     public Executor getAsyncExecutor() {
-        ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
-        executor.setCorePoolSize(minSize);
-        executor.setMaxPoolSize(maxSize);
-        executor.setQueueCapacity(queueSize);
-        executor.setThreadNamePrefix(threadPrefix);
-        executor.initialize();
-        return executor;
+        return new TaskExecutorAdapter(Executors.newVirtualThreadPerTaskExecutor());
     }
 }
