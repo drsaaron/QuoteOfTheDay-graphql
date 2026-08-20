@@ -16,6 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.graphql.test.autoconfigure.GraphQlTest;
+import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.graphql.test.tester.GraphQlTester;
 import org.springframework.test.context.jdbc.Sql;
@@ -29,6 +30,11 @@ import org.springframework.test.context.jdbc.Sql;
 public class QueryControllerTest {
     
     private static final Logger log = LoggerFactory.getLogger(QueryControllerTest.class);
+    
+    @TestConfiguration
+    public static class QueryControllerTestConfiguration {
+        
+    }
     
     @MockitoBean
     private BlazarCryptoFile cryptoFile;
