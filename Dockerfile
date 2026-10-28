@@ -1,4 +1,4 @@
-FROM drsaaron/blazarjavabase:1.72
+FROM drsaaron/blazarjavabase:1.73
 
 ENV ENVIRONMENT=prod
 
@@ -16,7 +16,6 @@ ADD ./runServices.sh ./runServices.sh
 
 # add a healthcheck
 ENV SERVER_PORT=3500
-HEALTHCHECK CMD curl --silent --fail http://localhost:$SERVER_PORT/monitoring/health || exit 1
 
 # run the script
 CMD ["./runServices.sh"]
